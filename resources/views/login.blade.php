@@ -45,7 +45,6 @@
                                                 <input type="password" class="form-control" name="password" id="password" value="" placeholder="Saisir le mot de passe ici ...">
                                                 <label for="password" class="form-label">Mot de passe</label>
                                             </div>
-                                            <a href="{{ route('forgottenPassword') }}" class="link-secondary text-decoration-none">Mot de passe oublié</a>
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
@@ -54,6 +53,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                <a href="{{ route('forgottenPassword') }}" class="link-secondary text-decoration-none">Mot de passe oublié</a>
                                 <div class="row">
                                     <div class="col-12">
                                         <hr class="mt-5 mb-4 border-secondary-subtle">

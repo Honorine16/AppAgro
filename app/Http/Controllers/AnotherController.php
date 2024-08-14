@@ -33,16 +33,16 @@ class AnotherController extends Controller
 
     public function forg_password()
     {
-        if (Auth::check()) {
-            return redirect()->route('dashboard');
-        }
+        // if (Auth::check()) {
+        //     return redirect()->route('dashboard');
+        // }
         return view('forgottenPassword');
     }
     public function new_password_fun()
     {
-        if (Auth::check()) {
-            return redirect()->route('dashboard');
-        }
+        // if (Auth::check()) {
+        //     return redirect()->route('dashboard');
+        // }
         return view('newPassword');
     }
 
