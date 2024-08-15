@@ -16,14 +16,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h4 class="text-center">Register Here</h4>
+                                            <h4 class="text-center">Nouveau mot de passe</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <form action="{{ route('otpCode.process') }}" method="post">
                                     @csrf
-
-                                    <h2 class="text-center">Nouveau mot de passe</h2>
 
                                     @if ($errors->any())
                                         <ul class="alert alert-danger">

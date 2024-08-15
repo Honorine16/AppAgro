@@ -16,14 +16,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h4 class="text-center">Register Here</h4>
+                                            <h4 class="text-center">Inscription</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <form action="{{ route('registration.process') }}" method="post">
                                     @csrf
-
-                                    <h2 class="text-center">Inscription</h2>
 
                                     @if ($errors->any())
                                         <ul class="alert alert-danger">
@@ -57,7 +55,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" value="" placeholder="Confirm Password" >
+                                                <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" value="" placeholder="Confirm Password" >
                                                 <label for="password" class="form-label">confirmer mot de passe</label>
                                             </div>
                                         </div>

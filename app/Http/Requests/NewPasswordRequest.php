@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Authentication;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ForgottenPasswordRequest extends FormRequest
+class NewPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,9 @@ class ForgottenPasswordRequest extends FormRequest
     {
         return [
             'email' => 'required|min:3|max:128|email',
-            // 'email' => ['required', 'min:3','max:128', 'email'], // Utilisation d'une validation customisée pour l'adresse email
-            // Règles de validation pour l'adresse email
+            'code' => 'required|min:4|max:6',
+            'password' => 'required|min:6|max:64',
+            'passwordConfirm' => 'same:password',
         ];
     }
 
@@ -36,10 +37,10 @@ class ForgottenPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.email' => 'L\'adresse email est invalide',
-            'email.required' => 'L\'adresse email est requise',
-            'email.min' => 'L\'email doit contenir au minimum 3 caractères',
-            'email.max' => 'L\'email doit contenir au maximum 128 caractères',
+            'password.required' => 'Le mot de passe est requis',
+            'password.min' => 'Le mot de passe doit contenir au minimum 3 caractères',
+            'password.max' => 'Le mot de passe doit contenir au maximum 128 caractères',
+            'password_confirm.same' => 'Les deux mot de passe ne sont pas identiques',
         ];
     }
 }

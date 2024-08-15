@@ -25,10 +25,10 @@ class RegistrationRequest extends FormRequest
             'name' => 'required|min:3|max:128|unique:users',
             'email' => 'required|min:3|max:128|email|unique:users',
             'password' => 'required|min:6|max:64',
-            'password_confirm' => 'same:password',
+            'passwordConfirm' => 'same:password',
         ];
     }
-
+     
     /**
      * Get the validation messages that apply to the request.
      *

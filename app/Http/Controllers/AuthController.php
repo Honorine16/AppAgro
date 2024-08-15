@@ -7,6 +7,7 @@ use App\Http\Requests\Authentication\LoginRequest;
 
 use App\Http\Requests\Authentication\OtpCodeRequest;
 use App\Http\Requests\Authentication\RegistrationRequest;
+use App\Http\Requests\NewPasswordRequest;
 use App\Interfaces\AuthenticationInterface;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,13 +74,14 @@ class AuthController extends Controller
             'email' => $request->email,
         ];
 
+        // return redirect()->route('dashboard');
+
         try {
-            
             if ($this->authInterface->forgottenPassword($data['email'])) 
-                return redirect('otpCode'); 
+                return redirect()->route('otpcode');
             else
                 return back()->with('error', 'Email non trover.');
-            // return redirect()->route('dashboard');
+            
         } catch (\Exception $ex) {
             return back()->with('error', 'Une erreur est survenue lors du traitement, Réessayez !');
         }
@@ -93,7 +95,6 @@ class AuthController extends Controller
         ];
 
         try {
-
             $code = $this->authInterface->checkOtpCode($data);
             
             if (!$code) 
@@ -101,12 +102,13 @@ class AuthController extends Controller
             else
                 return redirect()->route('newPassword'); 
             // return redirect()->route('dashboard');
+
         } catch (\Exception $ex) {
             return back()->with('error', 'Une erreur est survenue lors du traitement, Réessayez !');
         }
     }
     
-    public function newPassword(OtpCodeRequest $request)
+    public function newPassword(NewPasswordRequest $request)
     {
         $data = [
             'email' => $request->email,
@@ -122,8 +124,8 @@ class AuthController extends Controller
             if (!$user) 
                 return back()->with('error', 'Impossible de faire la mise à jour, reprendre.');
             else
-                return redirect()->route('newPassword'); 
-            // return redirect()->route('dashboard');
+                // return redirect()->route('newPassword'); 
+                return redirect()->route('dashboard');
         } catch (\Exception $ex) {
             return back()->with('error', 'Une erreur est survenue lors du traitement, Réessayez !');
         }

@@ -22,11 +22,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/forgottenPassword', [AnotherController::class, 'forg_password'])->name('forgottenPassword');
-Route::get('/otp-code', [AnotherController::class, 'otp_code-fun'])->name('otpCode');
-Route::get('/new-password', [AnotherController::class, 'new_password_fun'])->name('newPassword');
+Route::get('/otpcode', [AnotherController::class, 'otp_code_fun'])->name('otpcode');
+Route::get('/newPassword', [AnotherController::class, 'new_password_fun'])->name('newPassword');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::post('/registration', [AuthController::class, 'registration'])->name('registration.process');
-Route::post('/forgotten-password', [AuthController::class, 'forgottenPassword'])->name('forgottenPassword.process');
-Route::post('/otp-code', [AuthController::class, 'checkOtpCode'])->name('otpCode.process');
-Route::post('/new-password', [AuthController::class, 'newPassword'])->name('newPassword.process');
+Route::post('/forgottenPassword', [AuthController::class, 'forgottenPassword'])->name('forgottenPassword.process');
+Route::post('/otpcode', [AuthController::class, 'checkOtpCode'])->name('otpCode.process');
+Route::post('/newPassword', [AuthController::class, 'newPassword'])->name('newPassword.process');

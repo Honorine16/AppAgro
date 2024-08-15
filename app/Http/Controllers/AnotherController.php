@@ -46,4 +46,12 @@ class AnotherController extends Controller
         return view('newPassword');
     }
 
+    public function otp_code_fun()
+    {
+        // if (Auth::check()) {
+        //     return redirect()->route('dashboard');
+        // }
+        return view('otp');
+    }
+
 }

@@ -29,7 +29,7 @@ class OtpCodeEmail extends Mailable
     {
         return new Envelope(
             subject: 'Code de confirmation',
-            from: new Address('accounts@unetah.net', 'No reply ADN'),
+            from: new Address('accounts@unetah.net', 'Code de MAMAM'),
         );
     }
 
@@ -39,7 +39,7 @@ class OtpCodeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.otpcode',
             with: [
                 'name' => $this->name,
                 'code' => $this->code,

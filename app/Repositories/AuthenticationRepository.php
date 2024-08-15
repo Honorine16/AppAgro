@@ -44,7 +44,7 @@ class AuthenticationRepository implements AuthenticationInterface
 
     public function checkOtpCode(array $data)
     {
-        $code = OtpCode::where('email', $data['email'])->first;
+        $code = OtpCode::where('email', $data['email'])->first();
 
         if ($code)
             if (!Hash::check($data['code'], $code->code))

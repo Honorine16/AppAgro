@@ -16,14 +16,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mb-5">
-                                            <h4 class="text-center">Login Here</h4>
+                                            <h4 class="text-center">Mot de passe oublié</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <form action="{{ route('forgottenPassword.process') }}" method="post">
                                     @csrf
-
-                                    <h2 class="text-center">Mot de passe oublié</h2>
 
                                     @if ($errors->any())
                                         <ul class="alert alert-danger">
@@ -34,7 +32,7 @@
                                         <div>{{ $message }}</div><br />
                                     @endif
                                     @if ($message = Session::get('success'))
-                                        <div>{{ $message }}</div><br />
+                                        <div>{{ $message }}</div><br/>
                                     @endif
                                     <div class="row gy-3 overflow-hidden">
                                         <div class="col-12">
