@@ -2,6 +2,11 @@
 
 return [
 
+    'plant_diagnostic' => [
+        'url' => env('PLANT_DIAGNOSTIC_API_URL'),
+        'key' => env('PLANT_DIAGNOSTIC_API_KEY'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

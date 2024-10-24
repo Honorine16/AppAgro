@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Soumettre</button>
+                                                <button class="btn bsb-btn-xl btn-success py-3" type="submit">Soumettre</button>
                                             </div>
                                         </div>
                                     </div>
