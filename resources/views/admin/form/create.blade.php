@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +39,7 @@
         input[type="date"],
         input[type="time"],
         textarea {
-            width: 100%;
+            width: 95%;
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -72,9 +73,10 @@
 </head>
 
 <body>
+    @include('includes.sidebarAdmin')
     <div class="container">
         <h1>Créer une Formation</h1>
-        <form action="{{ route('formations.store') }}" method="POST">
+        <form action="{{ route('admin.form.store') }}" method="POST">
             @csrf
             <div>
                 <label for="title">Titre</label>
@@ -100,4 +102,5 @@
         </form>
     </div>
 </body>
+
 </html>

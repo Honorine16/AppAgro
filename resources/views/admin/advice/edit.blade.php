@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,12 +38,14 @@
         input[type="text"],
         textarea {
             width: 100%;
-            max-width: 100%; /* Ajouté pour éviter le débordement */
+            max-width: 100%;
+            /* Ajouté pour éviter le débordement */
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             transition: border-color 0.3s;
-            box-sizing: border-box; /* Ajouté pour inclure la bordure et le padding dans la largeur */
+            box-sizing: border-box;
+            /* Ajouté pour inclure la bordure et le padding dans la largeur */
         }
 
         input[type="text"]:focus,
@@ -71,11 +74,13 @@
         }
     </style>
 </head>
+
 <body>
+    @include('includes.sidebarAdmin')
     <div class="container">
         <h1>Éditer le Conseil</h1>
-        
-        <form action="{{ route('advices.update', $advice) }}" method="POST">
+
+        <form action="{{ route('admin.advice.update', $advice) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-4">
@@ -89,9 +94,10 @@
             <div class="mb-4">
                 <label for="category">Catégorie</label>
                 <input type="text" name="category" id="category" value="{{ $advice->category }}" required>
-            </div>
+            </div>URBzhJkG)C=-84k
             <button type="submit">Mettre à jour</button>
         </form>
     </div>
 </body>
+
 </html>

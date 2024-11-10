@@ -50,7 +50,7 @@
 </head>
 
 <body>
-    <form action="{{ route('showFormation') }}" method="post">
+    <form action="{{ route('menus.show') }}" method="post">
 
     @csrf
         <div class="container">
@@ -58,7 +58,7 @@
             <p><strong>Description:</strong> {{ $formation->description }}</p>
             <p><strong>Date:</strong> {{ $formation->date }}</p>
             <p><strong>Lieu:</strong> {{ $formation->location }}</p>
-            <a href="{{ route('registerFormation', $formation) }}" class="btn">S'inscrire</a>
+            <a href="{{ route('menus.register', $formation) }}" class="btn">S'inscrire</a>
         </div>
     </form>
 </body>

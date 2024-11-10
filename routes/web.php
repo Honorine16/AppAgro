@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DiagnosticController;
 use App\Http\Controllers\Admin\FormationController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +18,10 @@ Route::get('/registration', [AnotherController::class, 'registration'])->name('r
 
 Route::get('/logout', [AnotherController::class, 'logout'])->name('logout');
 
-
-
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
-Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
 
 
 
@@ -44,27 +42,73 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/advices', [AdviceController::class, 'index'])->name('menus.advice');
 
-    Route::get('/formations', [FormationController::class, 'index'])->name('menus.formation');
+    Route::get('/formations', [FormationController::class, 'showPublic'])->name('menus.formation');
+    Route::get('/formations/{formation}', [FormationController::class, 'show'])->name('menus.show');
+    Route::post('/formations/{formation}/register', [FormationController::class, 'register'])->name('menus.register');
 
 
+    // Route::get('/formations', [FormationController::class, 'index'])->name('menus.formation');
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     // Route::get('/formations', [FormationController::class, 'store'])->name('menus.formation');
 
 
-    Route::prefix('admin')->group(function () {
+    // Routes pour l’admin
+    Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {});
 
-        Route::resource('advices', AdviceController::class);
-        Route::get('/admin/advice', [AdviceController::class, 'index'])->name('admin.advice.index');
+    // Route pour les utilisateurs
+    Route::get('advices', [AdviceController::class, 'showToUsers'])->name('menus.advice');
+
+
+    Route::prefix('admin')->group(function () {
+        // Route::post('advices', [AdviceController::class, 'store'])->name('advices.store');
+        Route::post('/advices', [AdviceController::class, 'store'])->name('admin.advice.store');
+
+        Route::get('advices', [AdviceController::class, 'index'])->name('admin.advice.index');
+        Route::get('advices/create', [AdviceController::class, 'create'])->name('admin.advice.create');
+        Route::post('advices', [AdviceController::class, 'store'])->name('admin.advice.store');
+        Route::get('advices/{advice}/edit', [AdviceController::class, 'edit'])->name('admin.advice.edit');
+        Route::put('advices/{advice}', [AdviceController::class, 'update'])->name('admin.advice.update');
+        Route::delete('advices/{advice}', [AdviceController::class, 'destroy'])->name('admin.advice.destroy');
+
+
+        Route::get('/admin/formations', [FormationController::class, 'index'])->name('admin.form.index');
+        Route::get('/admin/formations/create', [FormationController::class, 'create'])->name('admin.form.create');
+        Route::post('/admin/formations', [FormationController::class, 'store'])->name('admin.form.store');
+        Route::get('/admin/formations/{formation}/edit', [FormationController::class, 'edit'])->name('edit');
+        Route::put('/admin/formations/{formation}', [FormationController::class, 'update'])->name('update');
+        Route::delete('/admin/formations/{formation}', [FormationController::class, 'destroy'])->name('destroy');
+
+
+
+
 
         Route::resource('formations', FormationController::class);
 
+        Route::get('/admin/formations/create', [FormationController::class, 'create'])->name('admin.form.create');
+
+        Route::get('/admin/formations', [FormationController::class, 'index'])->name('admin.form.index');
+        Route::get('/admin/formations/create', [FormationController::class, 'create'])->name('admin.form.create');
+
+
+        Route::get('/admin/formations/{formation}/edit', [FormationController::class, 'edit'])->name('edit');
+        Route::delete('/admin/formations/{formation}', [FormationController::class, 'destroy'])->name('destroy');
+        Route::get('/admin/formations', [FormationController::class, 'index'])->name('admin.form.index');
+        Route::post('/admin/formations', [FormationController::class, 'store'])->name('admin.form.store');
+        Route::put('/admin/formations/{formation}', [FormationController::class, 'update'])->name('update');
+
+
+
+
         Route::get('/admin/form', [FormationController::class, 'create'])->name('admin.form.index');
-        // Route::post('/form', [FormationController::class, 'store'])->name('formations.store');
 
-        // Route::get('/create', [FormationController::class, 'create'])->name('create');
+        Route::post('/form', [FormationController::class, 'store'])->name('formations.store');
 
-        // Route::post('/', [FormationController::class, 'store'])->name('store');
+        Route::get('/create', [FormationController::class, 'create'])->name('create');
 
-        // Route::get('/{formation}/edit', [FormationController::class, 'edit'])->name('edit');
+        Route::post('/', [FormationController::class, 'store'])->name('store');
+
+        Route::get('/{formation}/edit', [FormationController::class, 'edit'])->name('edit');
 
         // Route::put('/{formation}', [FormationController::class, 'update'])->name('update');
 

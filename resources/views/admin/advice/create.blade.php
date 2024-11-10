@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,12 +38,14 @@
         input[type="text"],
         textarea {
             width: 100%;
-            max-width: 100%; /* Évite le débordement */
+            max-width: 100%;
+            /* Évite le débordement */
             padding: 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             transition: border-color 0.3s;
-            box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+            box-sizing: border-box;
+            /* Inclut le padding et la bordure dans la largeur */
         }
 
         input[type="text"]:focus,
@@ -71,11 +74,14 @@
         }
     </style>
 </head>
+
 <body>
+    @include('includes.sidebarAdmin')
     <div class="container">
+
         <h1>Ajouter un Conseil</h1>
 
-        <form action="{{ route('advices.store') }}" method="POST">
+        <form action="{{ route('admin.advice.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="title">Titre</label>
@@ -93,4 +99,5 @@
         </form>
     </div>
 </body>
+
 </html>

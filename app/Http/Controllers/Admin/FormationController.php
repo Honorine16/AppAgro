@@ -16,10 +16,15 @@ class FormationController extends Controller
     public function index()
     {
         $formations = Formation::all();
-        return view('menus.formation', compact('formations'));
+        return view('admin.form.index', compact('formations'));
         
     }
 
+    public function showPublic()
+{
+    $formations = Formation::all();
+    return view('menus.formation', compact('formations'));
+}
     /**
      * Show the form for creating a new resource.
      */
@@ -50,10 +55,12 @@ class FormationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Formation $formation)
+    public function show($id)
     {
-        return view('menus.showFormation', compact('formation'));
+        $formation = Formation::findOrFail($id); 
+        return view('menus.show', compact('formation'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.

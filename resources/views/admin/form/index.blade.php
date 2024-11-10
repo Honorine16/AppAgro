@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 800px;
             margin: auto;
@@ -19,27 +21,34 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
             color: #333;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
             background-color: #4CAF50;
             color: white;
         }
+
         tr:hover {
             background-color: #f1f1f1;
         }
+
         .btn {
             background-color: #4CAF50;
             color: white;
@@ -49,15 +58,18 @@
             text-decoration: none;
             margin-right: 5px;
         }
+
         .btn:hover {
             background-color: #45a049;
         }
     </style>
 </head>
+
 <body>
+    @include('includes.sidebarAdmin')
     <div class="container">
         <h1>Liste des Formations</h1>
-        <a href="{{ route('formations.create') }}" class="btn">Ajouter une Formation</a>
+        <a href="{{ route('admin.form.create') }}" class="btn">Ajouter une Formation</a>
         <table>
             <thead>
                 <tr>
@@ -74,8 +86,8 @@
                     <td>{{ $formation->description }}</td>
                     <td>{{ $formation->date }}</td>
                     <td>
-                        <a href="{{ route('form.edit', $formation) }}" class="btn">Éditer</a>
-                        <form action="{{ route('formations.destroy', $formation) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('edit', $formation) }}" class="btn">Modifier</a>
+                        <form action="{{ route('destroy', $formation) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn" style="background-color: red;">Supprimer</button>
@@ -87,4 +99,5 @@
         </table>
     </div>
 </body>
+
 </html>

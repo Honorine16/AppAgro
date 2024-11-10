@@ -49,7 +49,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ccc;
@@ -90,9 +91,10 @@
 </head>
 
 <body>
+    @include('includes.sidebarAdmin')
     <div class="container">
         <h1>Liste des Conseils</h1>
-        <a href="{{ route('advices.create') }}">Ajouter un Conseil</a>
+        <a href="{{ route('admin.advice.create') }}">Ajouter un Conseil</a>
 
         <div class="overflow-x-auto">
             <table>
@@ -109,8 +111,8 @@
                         <td>{{ $advice->title }}</td>
                         <td>{{ $advice->category }}</td>
                         <td>
-                            <a href="{{ route('advices.edit', $advice) }}" class="action-link">Éditer</a>
-                            <form action="{{ route('advices.destroy', $advice) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('admin.advice.edit', $advice) }}" class="action-link">Modifier</a>
+                            <form action="{{ route('admin.advice.destroy', $advice) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-button">Supprimer</button>

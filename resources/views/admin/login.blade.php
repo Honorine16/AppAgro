@@ -1,72 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Admin</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #0d0d0d;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            box-sizing: border-box; /* Pour inclure le padding dans la largeur totale */
-        }
-        h1 {
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            width: 320px;
             text-align: center;
-            margin-bottom: 20px; /* Ajoute un espace en bas du titre */
         }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box; /* Pour inclure le padding dans la largeur */
+
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
         }
-        button {
+
+        .input-box {
+            position: relative;
+            margin: 20px;
+        }
+
+        .input-box input {
             width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            padding: 12px 15px;
+            background: none;
             border: none;
-            border-radius: 5px;
+            outline: none;
+            color: #fff;
+            font-size: 18px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transition: 0.4s;
+        }
+
+        .input-box input:focus {
+            border-color: #00ffff;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .input-box span {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.4s;
+            transform: translateY(-50%);
+        }
+
+        .input-box input:focus+span,
+        .input-box input:not(:placeholder-shown)+span {
+            top: 5px;
+            font-size: 12px;
+            color: #00ffff;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #00ffff, #00ff80);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: #000;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.4s;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #45a049;
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #00ff80, #00ffff);
+            box-shadow: 0 5px 15px #00ffff80;
         }
+
         .error {
-            color: red;
-            text-align: center;
-            margin-top: 10px; /* Ajoute un espace au-dessus de l'erreur */
+            background: red;
+            color: white;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Connexion Admin</h1>
+    <div class="form-container">
+        <h2>Connexion</h2>
         <form action="{{ route('admin.login.submit') }}" method="POST">
             @csrf
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit">Se connecter</button>
-        </form>
-        @if ($errors->any())
-            <div class="error">
-                {{ $errors->first() }}
+            <div class="input-box">
+                <input type="text" name="email" placeholder="">
+                <span>Email</span>
             </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="">
+                <span>Mot de passe</span>
+            </div>
+            <button type="submit" class="submit-btn">Se connecter</button>
+        </form>
+        <br>
+        @if ($errors->any())
+        <div class="error">
+            {{ $errors->first() }}
+        </div>
         @endif
     </div>
 </body>
+
 </html>

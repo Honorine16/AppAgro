@@ -84,6 +84,7 @@
 </head>
 
 <body>
+    @include('includes.sidebar')
 
     <!-- <h2>Bienvenu(e) sur la page de Diagnostic</h2>
     <p>Pour ne plus perdre de temps, sélectionner l'image de la plante que vous voulez diagnostiquer!</p> -->
@@ -119,7 +120,7 @@
         <form method="GET" action="{{ route('upload.plant.image') }}" enctype="multipart/form-data">
             @csrf
             <label for="plant_image">Choisissez une image :</label>
-            <input type="file" name="plant_image" required>
+            <input type="file" name="plant_image" accept="image/*" required>
             <button type="submit">Analyser l'Image</button>
         </form>
 
@@ -142,7 +143,7 @@
         </div>
         @endif
 
-        @if($errors->any())
+        <!-- @if($errors->any())
         <div style="color: red; margin-bottom: 15px;">
             <ul>
                 @foreach($errors->all() as $error)
@@ -150,7 +151,12 @@
                 @endforeach
             </ul>
         </div>
+        @endif -->
+
+        @if ($errors->has('plant_image'))
+        <div class="alert alert-danger">{{ $errors->first('plant_image') }}</div>
         @endif
+
     </div>
 
 

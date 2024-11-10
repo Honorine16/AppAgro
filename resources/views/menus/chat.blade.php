@@ -126,6 +126,7 @@
 </head>
 
 <body>
+    @include('includes.sidebar')
     <div class="container">
         <h1 class="header">{{ $user->name }}</h1>
 

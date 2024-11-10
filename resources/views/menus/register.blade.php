@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="{{ route('registerFormation', $formation) }}" method="POST">
+    <form action="{{ route('menus.register', $formation->id) }}" method="POST">
         @csrf
         <button type="submit">S'inscrire à la formation</button>
     </form>

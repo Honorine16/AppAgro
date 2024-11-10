@@ -14,7 +14,7 @@ class AdviceController extends Controller
     public function index()
     {
         $advices = Advice::all();
-        return view('menus.advice', compact('advices'));
+        return view('admin.advice.index', compact('advices'));
     }
 
     /**
@@ -38,7 +38,7 @@ class AdviceController extends Controller
         ]);
 
         Advice::create($request->all());
-        return redirect()->route('advice.index')->with('success', 'Conseil ajouté avec succès.');
+        return redirect()->route('admin.advice.index')->with('success', 'Conseil ajouté avec succès.');
     
     }
 
@@ -71,7 +71,7 @@ class AdviceController extends Controller
         ]);
 
         $advice->update($request->all());
-        return redirect()->route('advice.index')->with('success', 'Conseil mis à jour avec succès.');
+        return redirect()->route('admin.advice.index')->with('success', 'Conseil mis à jour avec succès.');
     
     }
 
@@ -81,7 +81,13 @@ class AdviceController extends Controller
     public function destroy(Advice $advice)
     {
         $advice->delete();
-        return redirect()->route('advice.index')->with('success', 'Conseil supprimé avec succès.');
+        return redirect()->route('admin.advice.index')->with('success', 'Conseil supprimé avec succès.');
     
+    }
+
+    public function showToUsers()
+    {
+        $advices = Advice::all();
+        return view('menus.advice', compact('advices'));
     }
 }

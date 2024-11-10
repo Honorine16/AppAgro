@@ -29,7 +29,7 @@ class OtpCodeEmail extends Mailable
     {
         return new Envelope(
             subject: 'Code de confirmation',
-            from: new Address('accounts@unetah.net', 'Code de Espéranza'),
+            from: new Address('accounts@unetah.net', 'Code de confirmation de l\'AppAgro'),
         );
     }
 
